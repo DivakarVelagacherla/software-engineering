@@ -61,3 +61,11 @@ Notes from working through system design fundamentals, databases, and (eventuall
 - [x] [Distributed Locking](<./Tier 2/reliability_observability/distributed_locking.md>)
 - [x] [Monitoring and Alerting](<./Tier 2/reliability_observability/monitoring_alerting.md>)
 - [x] [Service Discovery](<./Tier 2/reliability_observability/service_discovery.md>)
+
+### Tier 2 - Data Partitioning & Storage
+
+- [x] [Data Partitioning Strategies](<./Tier 2/data_partitioning/data_partitioning_strategies.md>)
+- [x] [Time Series Databases](<./Tier 2/data_partitioning/time_series_DBs.md>)
+- [x] [Data Lakes vs Warehouses](<./Tier 2/data_partitioning/data_lakes_and_warehouses.md>)
+- [x] [Search Infrastructure](<./Tier 2/data_partitioning/search_infrastructure.md>)
+- [x] [Geospatial Data](<./Tier 2/data_partitioning/geospatial_data.md>)
