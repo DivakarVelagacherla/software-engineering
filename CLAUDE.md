@@ -16,8 +16,18 @@ ingests this content needs the shape to stay predictable across topics.
 
 ## Repo layout
 
-- One top-level folder per topic/book — `java/`, `spring-boot/`, `system-design/`, and so on.
-  New topics get a new top-level folder when work on them starts.
+- One top-level folder per topic/book — `internals-of-core-java/`,
+  `everything-about-spring-and-spring-boot/`, `system-design/`, and so on. New topics get a new
+  top-level folder when work on them starts.
+- **Folder name = that book/topic's actual title, kebab-cased** (e.g. the book titled "Internals
+  of Core Java" lives in `internals-of-core-java/`, not `java/`). The portfolio's Learning page
+  derives its display name and routing directly from the folder name, so name it right the first
+  time rather than a shorthand you'd want to rename later.
+- **Folders are stable once created — don't rename or restructure existing ones.** The whole
+  point of this repo feeding the portfolio automatically is that adding a new topic is just a new
+  folder; reorganizing existing folders is exactly the kind of churn that setup is meant to avoid.
+  If something about an existing folder's structure turns out to be wrong, ask before changing it
+  rather than assuming a cleanup pass is welcome.
 - Each topic folder has its own `README.md` acting as that topic's table of contents / index.
 - The root `README.md` is a short repo-wide index pointing at each topic folder — it should stay
   high-level and not accumulate topic-specific detail (that belongs in the topic's own README).
@@ -26,12 +36,12 @@ ingests this content needs the shape to stay predictable across topics.
 
 This repo currently has two different internal shapes, both intentional:
 
-1. **Book style** (`java/`, `spring-boot/`) — the source material was a single flowing narrative
-   (Part → Chapter → Section). Split it into **one file per major Part/Section**, not one file
-   per chapter or subtopic. Keep the split coarse — the goal is "one giant topic per page," not
-   maximum granularity. Each part file keeps its original heading levels. The folder's
-   `README.md` holds the book's intro/how-to-read-this plus a table of contents linking to each
-   part file in order.
+1. **Book style** (`internals-of-core-java/`, `everything-about-spring-and-spring-boot/`) — the
+   source material was a single flowing narrative (Part → Chapter → Section). Split it into
+   **one file per major Part/Section**, not one file per chapter or subtopic. Keep the split
+   coarse — the goal is "one giant topic per page," not maximum granularity. Each part file keeps
+   its original heading levels. The folder's `README.md` holds the book's intro/how-to-read-this
+   plus a table of contents linking to each part file in order.
 2. **Topic-notes style** (`system-design/`) — the source material was always a set of discrete,
    mostly-independent topics. Keep it as many small flat files grouped into subfolders by theme,
    with the folder's `README.md` as a roadmap/checklist linking to each file.
@@ -42,8 +52,8 @@ ask once rather than guessing.
 
 ## Book-synthesis workflow — read this before starting a new book from source PDFs
 
-`internals-of-core-java.md` (the source for `java/`) cost close to 100k tokens to produce, almost
-entirely from reading near-duplicate PDFs in full. Follow this sequence for the next book sourced
+The book in `internals-of-core-java/` cost close to 100k tokens to produce, almost entirely from
+reading near-duplicate PDFs in full. Follow this sequence for the next book sourced
 from PDFs so it costs a fraction of that:
 
 1. **Hash every PDF before reading any of them**: `md5 *.pdf` (or `shasum`). Files with
