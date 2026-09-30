@@ -23,12 +23,17 @@ that:
 1. **Hash every PDF before reading any of them**: `md5 *.pdf` (or `shasum`). Files with
    identical hashes are byte-identical — read exactly one copy, skip the rest outright. Do this
    for the whole folder up front, not file-by-file.
-2. **For files that share a base filename but aren't identical by hash** (e.g. `Foo.pdf`,
-   `Foo-1.pdf`, `Foo-2.pdf`) — this pattern has meant "same prose content, one extra page" (an
-   added table of contents) every time it's shown up so far. Before reading a variant in full,
-   read only its first 1–2 pages and diff that against the base file's already-extracted notes.
-   If it matches, skip the rest of that file. Do not re-read all N pages of a variant just to
-   confirm what page 1 already tells you.
+2. **`brew install poppler` if it isn't already installed, then run every PDF through
+   `pdftotext -layout` into scratchpad `.txt` files, then `md5` *those* text files.** This is
+   the real fix for the near-duplicate problem (files that share a base filename pattern like
+   `Foo.pdf`/`Foo-1.pdf` but aren't byte-identical because of embedded metadata or one extra
+   page) — comparing extracted *text* content costs nothing in model tokens (it's a shell
+   command) and reliably groups files by actual prose content instead of guessing from a
+   filename pattern or spending a read on a sample page. On the Spring/Spring Boot module, this
+   collapsed 18 source PDFs into 7 truly unique documents before a single one was read into
+   context. Only read (via the `Read` tool) the one `.txt` file per content-hash group that you
+   actually need — never the original PDF once its text has been extracted this way, and never
+   more than one file per matching hash group.
 3. **Extract straight to scratchpad notes per source file, in condensed form** — short bullets
    capturing the substance, not verbatim transcription. The scratchpad notes are what actually
    get used to write the book; the raw PDF reads sitting earlier in the conversation should not
