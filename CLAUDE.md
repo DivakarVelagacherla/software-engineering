@@ -42,13 +42,24 @@ This repo currently has two different internal shapes, both intentional:
    coarse — the goal is "one giant topic per page," not maximum granularity. Each part file keeps
    its original heading levels. The folder's `README.md` holds the book's intro/how-to-read-this
    plus a table of contents linking to each part file in order.
-2. **Topic-notes style** (`system-design/`) — the source material was always a set of discrete,
-   mostly-independent topics. Keep it as many small flat files grouped into subfolders by theme,
-   with the folder's `README.md` as a roadmap/checklist linking to each file.
+2. **Topic-notes style** (`system-design/basics/`, `system-design/advanced/`) — the source
+   material was always a set of discrete, mostly-independent topics. Keep it as many small flat
+   files grouped into subfolders by theme, with the folder's `README.md` as a roadmap/checklist
+   linking to each file.
+3. **Design case-study style** (`system-design/designs/`) — one markdown file per real-world
+   system design actually practiced for interviews, flat (no subfolder per design). Any diagrams
+   (draw.io exports) live alongside in the same folder, filename matching the design's markdown
+   file (e.g. `url-shortener.md` + `url-shortener.png`), referenced from the markdown as a normal
+   image link.
 
 When starting a new topic, look at the shape of the source material and pick whichever of these
-two fits — don't force one style onto content that doesn't match it. If it's genuinely unclear,
-ask once rather than guessing.
+fits — don't force one style onto content that doesn't match it. If it's genuinely unclear, ask
+once rather than guessing.
+
+Note on `system-design/` specifically: it's not a book, it's an interview-prep guide, split by
+skill level and purpose — `basics/` (what things are and why, foundational topics), `advanced/`
+(same, but for more advanced topics), and `designs/` (basics + advanced applied to real designs,
+plus how to talk through them in an interview).
 
 ## Book-synthesis workflow — read this before starting a new book from source PDFs
 
