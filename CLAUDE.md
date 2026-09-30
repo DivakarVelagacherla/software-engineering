@@ -1,24 +1,50 @@
 # CLAUDE.md
 
-This repo is Divakar's personal interview-prep notes collection. Folders are created **one at a
-time, per book** — a new topic folder gets added when work on it starts, holding that topic's
-source PDFs (interview Q&A dumps, often with duplicate or near-duplicate files exported from the
-same source), and is not pre-provisioned ahead of time. The deliverable for each folder is one
-consolidated, book-style markdown file at the repo root — flowing narrative prose organized by
-topic, not a Q&A crib sheet — modeled on `internals-of-core-java.md` (built from `coreJava/`).
+This repo is Divakar's personal software-engineering notes and books collection — currently
+system design, Java internals, and Spring Boot, with more topics added over time. It used to be
+split across separate per-topic repos; those were consolidated here so there's one source of
+truth going forward.
+
+## How this repo relates to the portfolio
+
+This repo is the content source for the "Learning" section of the portfolio site
+(`DivakarVelagacherla/portfolio`). The intent is that committing new notes here should be enough
+to have them show up there automatically, without hand-editing the portfolio repo — closer to an
+API/CMS relationship than a one-off copy-paste. That's the main reason structure and naming
+conventions in this file matter more than they would in a repo nobody else reads: whatever
+ingests this content needs the shape to stay predictable across topics.
 
 ## Repo layout
 
-- `coreJava/` — source PDFs for Core Java → produced `internals-of-core-java.md`
-- Other topic folders are added as new books are started; expect the folder list here to change
-  over time rather than treating any past list of folder names as current
-- Book outputs live at the repo root, named `internals-of-<topic>.md`
+- One top-level folder per topic/book — `java/`, `spring-boot/`, `system-design/`, and so on.
+  New topics get a new top-level folder when work on them starts.
+- Each topic folder has its own `README.md` acting as that topic's table of contents / index.
+- The root `README.md` is a short repo-wide index pointing at each topic folder — it should stay
+  high-level and not accumulate topic-specific detail (that belongs in the topic's own README).
 
-## Book-synthesis workflow — read this before starting a new book
+### Two content shapes, pick based on the source material
 
-`internals-of-core-java.md` cost close to 100k tokens to produce, almost entirely from reading
-near-duplicate PDFs in full. Follow this sequence for the next book so it costs a fraction of
-that:
+This repo currently has two different internal shapes, both intentional:
+
+1. **Book style** (`java/`, `spring-boot/`) — the source material was a single flowing narrative
+   (Part → Chapter → Section). Split it into **one file per major Part/Section**, not one file
+   per chapter or subtopic. Keep the split coarse — the goal is "one giant topic per page," not
+   maximum granularity. Each part file keeps its original heading levels. The folder's
+   `README.md` holds the book's intro/how-to-read-this plus a table of contents linking to each
+   part file in order.
+2. **Topic-notes style** (`system-design/`) — the source material was always a set of discrete,
+   mostly-independent topics. Keep it as many small flat files grouped into subfolders by theme,
+   with the folder's `README.md` as a roadmap/checklist linking to each file.
+
+When starting a new topic, look at the shape of the source material and pick whichever of these
+two fits — don't force one style onto content that doesn't match it. If it's genuinely unclear,
+ask once rather than guessing.
+
+## Book-synthesis workflow — read this before starting a new book from source PDFs
+
+`internals-of-core-java.md` (the source for `java/`) cost close to 100k tokens to produce, almost
+entirely from reading near-duplicate PDFs in full. Follow this sequence for the next book sourced
+from PDFs so it costs a fraction of that:
 
 1. **Hash every PDF before reading any of them**: `md5 *.pdf` (or `shasum`). Files with
    identical hashes are byte-identical — read exactly one copy, skip the rest outright. Do this
@@ -29,7 +55,7 @@ that:
    `Foo.pdf`/`Foo-1.pdf` but aren't byte-identical because of embedded metadata or one extra
    page) — comparing extracted *text* content costs nothing in model tokens (it's a shell
    command) and reliably groups files by actual prose content instead of guessing from a
-   filename pattern or spending a read on a sample page. On the Spring/Spring Boot module, this
+   filename pattern or spending a read on a sample page. On the Spring/Spring Boot book, this
    collapsed 18 source PDFs into 7 truly unique documents before a single one was read into
    context. Only read (via the `Read` tool) the one `.txt` file per content-hash group that you
    actually need — never the original PDF once its text has been extracted this way, and never
@@ -52,6 +78,7 @@ that:
 ## Known preferences (apply without re-asking)
 
 - Consolidated notes should read like a book, not a Q&A list.
-- If a new book's source material doesn't obviously fit the same "dedupe + narrative synthesis"
-  approach, ask once via a clarifying question rather than assuming `internals-of-core-java.md`'s
-  exact approach transfers unchanged.
+- Book-style content gets split coarsely (by Part/Section) if split at all — never one file per
+  chapter or subtopic.
+- If a new book's source material doesn't obviously fit one of the two shapes above, ask once via
+  a clarifying question rather than assuming an existing approach transfers unchanged.
