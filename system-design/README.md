@@ -68,4 +68,6 @@ interviews (`designs/`).
 
 Real system designs practiced for interviews — how the pieces above actually get put together,
 plus how to talk through them out loud. Each design is one markdown file, diagram(s) alongside
-it in this folder. Nothing here yet.
+it in this folder.
+
+- [x] [URL Shortener](<./designs/url-shortener.md>)
