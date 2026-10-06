@@ -1,28 +1,6 @@
 # URL Shortener
 
-```mermaid
-graph TD
-    A[User] -->|POST long URL| B[API Gateway\nRate Limiting]
-    B --> C[App Server\nECS x3 Stateless]
-    C --> D[Snowflake ID Generator\nBase62 encode → 7 chars]
-    D --> E{Bloom Filter\nRedis\nUniqueness check}
-    E -->|Definitely not exists| F[DynamoDB\nGlobal Table\nstore short→long]
-    E -->|Probably exists| G[Verify in DynamoDB]
-    G --> F
-    F -->|Return short URL| A
-```
-
-```mermaid
-graph TD
-    A[User] -->|GET bit.ly/aB3kX9p| B[DNS\nRoute 53\nLatency routing]
-    B --> C[API Gateway\nRate Limiting]
-    C --> D[App Server\nECS Regional]
-    D --> E{Redis Cache\nElastiCache Multi-AZ}
-    E -->|Cache HIT| F[302 Redirect\nto long URL]
-    E -->|Cache MISS| G[DynamoDB\nGlobal Table]
-    G -->|Fetch + cache result| E
-    F --> A
-```
+![URL Shortener](url-shortener.png)
 
 ---
 
