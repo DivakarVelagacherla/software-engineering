@@ -96,6 +96,25 @@ from PDFs so it costs a fraction of that:
    like Alex Xu's *System Design Interview* than an interview crib sheet), and it carries forward
    to future books unless told otherwise.
 
+## "update repo" — standing command
+
+When Divakar says **"update repo"**, treat it as a request to bring whatever was just added into
+line with the conventions in this file, without re-explaining what's wrong each time. Do this:
+
+1. Run `git status` to find new/untracked and modified files since the last commit.
+2. For each new file, check it against the relevant convention above — topic folder naming
+   (kebab-case, matches actual title), the correct content shape for that folder (book/topic-notes
+   /design case-study), filename casing and spelling, and image colocation/naming for design
+   case-studies (`<design>.md` + `<design>.png`, flat, no `images/` subfolder).
+3. Fix naming/placement issues directly (rename, move, fix stray headers that duplicate the
+   title, etc.) rather than just flagging them.
+4. Update the relevant index files so the new content is actually linked, not just present on
+   disk: the topic's own `README.md` (and, for `system-design/designs/`, the top-level
+   `system-design/README.md` too, since it also lists designs).
+5. Only ask before acting if something is genuinely ambiguous (e.g. the new content doesn't
+   obviously fit any of the existing shapes) — don't ask for confirmation on mechanical
+   renames/relinks that directly follow the rules already written down here.
+
 ## Known preferences (apply without re-asking)
 
 - Consolidated notes should read like a book, not a Q&A list.
